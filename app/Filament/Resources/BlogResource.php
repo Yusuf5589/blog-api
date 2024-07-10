@@ -2,10 +2,11 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
-use App\Models\User;
+use App\Filament\Resources\BlogResource\Pages;
+use App\Filament\Resources\BlogResource\RelationManagers;
+use App\Models\Blog;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -14,12 +15,12 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Date;
 
-class UserResource extends Resource
+class BlogResource extends Resource
 {
-
-    protected static ?string $navigationGroup = "User Task";
-    protected static ?string $model = User::class;
+    protected static ?string $navigationGroup = "Blog Task";
+    protected static ?string $model = Blog::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -27,9 +28,11 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')->required(),
-                TextInput::make('email')->required()->email(),
-                TextInput::make('password')->required()->password(),
+                TextInput::make('title')->required(),
+                TextInput::make('description')->required(),
+                DatePicker::make("beginning_date")->label("Starter Date")->minDate(now()),
+                DatePicker::make("finish_date")->label("Finish Date")->after("beginning_date")->minDate(now()->addDay()),
+                TextInput::make('category_id')->required()->integer(),
             ]);
     }
 
@@ -37,9 +40,11 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
-                TextColumn::make('name'),
-                TextColumn::make('email'),
+                TextColumn::make('title'),
+                TextColumn::make('description'),
+                TextColumn::make('beginning_date'),
+                TextColumn::make('finish_date'),
+                TextColumn::make('category_id'),
             ])
             ->filters([
                 //
@@ -64,9 +69,9 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            'index' => Pages\ListBlogs::route('/'),
+            'create' => Pages\CreateBlog::route('/create'),
+            'edit' => Pages\EditBlog::route('/{record}/edit'),
         ];
     }
 }
