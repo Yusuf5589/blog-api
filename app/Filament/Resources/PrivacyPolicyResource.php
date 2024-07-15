@@ -2,9 +2,10 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CategoryResource\Pages;
-use App\Filament\Resources\CategoryResource\RelationManagers;
-use App\Models\Category;
+use App\Filament\Resources\PrivacyPolicyResource\Pages;
+use App\Filament\Resources\PrivacyPolicyResource\RelationManagers;
+use App\Models\Privacy_Policy;
+use App\Models\PrivacyPolicy;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -15,10 +16,11 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CategoryResource extends Resource
+class PrivacyPolicyResource extends Resource
 {
-    protected static ?string $navigationGroup = "Category Task";
-    protected static ?string $model = Category::class;
+    protected static ?string $navigationGroup = "Privacy Task";
+
+    protected static ?string $model = Privacy_Policy::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -26,8 +28,8 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')->required(),
-                TextInput::make('slug')->required()->unique(),
+                TextInput::make('title'),
+                TextInput::make('description')
             ]);
     }
 
@@ -35,8 +37,8 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name'),
-                TextColumn::make('slug'),
+                TextColumn::make('title'),
+                TextColumn::make('description')
             ])
             ->filters([
                 //
@@ -45,9 +47,9 @@ class CategoryResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                // Tables\Actions\BulkActionGroup::make([
+                //     Tables\Actions\DeleteBulkAction::make(),
+                // ]),
             ]);
     }
 
@@ -61,9 +63,14 @@ class CategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCategories::route('/'),
-            'create' => Pages\CreateCategory::route('/create'),
-            'edit' => Pages\EditCategory::route('/{record}/edit'),
+            'index' => Pages\ListPrivacyPolicies::route('/'),
+            'create' => Pages\CreatePrivacyPolicy::route('/create'),
+            'edit' => Pages\EditPrivacyPolicy::route('/{record}/edit'),
         ];
+    }
+
+    public static function getLabel(): string
+    {
+        return 'Privacy Policy';
     }
 }
