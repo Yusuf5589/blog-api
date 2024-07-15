@@ -2,14 +2,18 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Pages\Dashboard;
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -21,7 +25,7 @@ class UserResource extends Resource
     protected static ?string $navigationGroup = "User Task";
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     public static function form(Form $form): Form
     {
@@ -30,9 +34,17 @@ class UserResource extends Resource
                 TextInput::make('name')->required(),
                 TextInput::make('email')->required()->email(),
                 TextInput::make('password')->required()->password(),
+                Select::make('roles')
+                ->relationship('roles', 'name')
+                ->multiple()
+                ->preload()
+                ->searchable()
+            
+            
+
             ]);
     }
-
+    
     public static function table(Table $table): Table
     {
         return $table
@@ -40,6 +52,7 @@ class UserResource extends Resource
                 TextColumn::make('id'),
                 TextColumn::make('name'),
                 TextColumn::make('email'),
+                TextColumn::make('roles.name'),
             ])
             ->filters([
                 //
