@@ -39,7 +39,7 @@ class BlogResource extends Resource
             ->schema([
                 TextInput::make('title')->required(),
                 TextInput::make('description')->required(),
-                DatePicker::make("beginning_date")->label("Starter Date")->minDate(now()),
+                DatePicker::make("beginning_date")->label("Starter Date"),
                 DatePicker::make("finish_date")->label("Finish Date")->after("beginning_date")->minDate(now()->addDay()),
                 TagsInput::make("tags")->required(),
                 Select::make('category_id')->label("Category")->options(Category::pluck("name","id"))->required(),
