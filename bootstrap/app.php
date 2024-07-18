@@ -20,10 +20,16 @@ return Application::configure(basePath: dirname(__DIR__))
     })->withSchedule(function (Schedule $schedule) {
         $schedule->call(function(){
             $date = Carbon::now()->toDateString();
-            Blog::where('beginning_date', $date)->update([
+            Blog::where('beginning_date',"<=", $date)->update([
                 'status' => 1
             ]);
-        })->daily();
+            Blog::where('finish_date',">", $date)->update([
+                'status' => 1
+            ]);
+            Blog::where('finish_date',"<", $date)->update([
+                'status' => 0
+            ]);
+        })->everyTwentySeconds();
     })
     ->withExceptions(function (Exceptions $exceptions) {
 

@@ -29,10 +29,6 @@ return [
         'name' => 'panel_user',
     ],
 
-    'eren' => [
-        'enabled' => true,
-        'name' => 'eren',
-    ],
 
     'permission_prefixes' => [
         'resource' => [
@@ -88,7 +84,7 @@ return [
     ],
 
     'register_role_policy' => [
-        'enabled' => false,
+        'enabled' => true,
     ],
 
 ];

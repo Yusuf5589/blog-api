@@ -64,7 +64,7 @@ class AdminPanelProvider extends PanelProvider
                     value: true,
                     directory: 'avatars',
                     rules: 'mimes:jpeg,png|max:1024'
-                )->setNavigationGroup("My Profile Operation")
+                )->setNavigationGroup($navigationGroup = "Admin Controls")
                 ->setIcon("heroicon-o-user")
                 ->setNavigationLabel("My Profile")
                 ->setTitle("Welcome, Your Profile")
