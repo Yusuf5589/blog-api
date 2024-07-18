@@ -18,7 +18,7 @@ class CommentsController extends Controller
         $req->validate([
             "comments" => "required",
             "comments_gmail" => "required|email",
-            "comments_blog_title" => "required",
+            "blogId" => "required",
         ]);
         
         try {
@@ -33,8 +33,22 @@ class CommentsController extends Controller
                 "message" =>$th->getMessage(),
             ]);
         }
-
-
-
     }
+
+    public function getComment($blogId){
+        try {
+
+            return $this->comments->getCommentRep($blogId);
+            
+        } 
+        catch (\Throwable $th) {
+            return response()->json([
+                "status" =>"error",
+                "message" =>$th->getMessage(),
+            ]);
+        }
+
+    
+    }
+
 }

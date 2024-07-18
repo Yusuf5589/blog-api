@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Blog extends Model
 {
@@ -50,4 +51,25 @@ class Blog extends Model
         return asset('storage/' . $this->img_url);
     }
     
+
+
+    protected static function booted()
+    {
+        static::updating(function ($user) {
+            if ($user->isDirty('img_url')) {
+                $oldPhoto = $user->getOriginal('img_url');
+                if ($oldPhoto && Storage::disk('public')->exists($oldPhoto)) {
+                    Storage::disk('public')->delete($oldPhoto);
+                }
+            }
+        });
+
+        static::deleted(function ($user) {
+            if ($user->img_url && Storage::disk('public')->exists($user->img_url)) {
+                Storage::disk('public')->delete($user->img_url);
+            }
+        });
+    }
+
+
 }

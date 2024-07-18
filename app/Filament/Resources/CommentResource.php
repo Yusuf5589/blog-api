@@ -2,23 +2,25 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CategoryResource\Pages;
-use App\Filament\Resources\CategoryResource\RelationManagers;
-use App\Models\Category;
+use App\Filament\Resources\CommentResource\Pages;
+use App\Filament\Resources\CommentResource\RelationManagers;
+use App\Models\Comment;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CategoryResource extends Resource
+class CommentResource extends Resource
 {
-    protected static ?string $navigationGroup = "General Controls";
-    protected static ?string $model = Category::class;
+    protected static ?string $navigationGroup = "Admin Controls";
+    protected static ?string $model = Comment::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -26,8 +28,10 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')->required(),
-                TextInput::make('slug')->required()->unique(),
+                TextInput::make("comments"),
+                TextInput::make("comments_gmail"),
+                TextInput::make("blogId"),
+                Toggle::make("status")->onColor('success')->offColor('danger'),
             ]);
     }
 
@@ -35,8 +39,10 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name'),
-                TextColumn::make('slug'),
+                TextColumn::make("comments"),
+                TextColumn::make("comments_gmail"),
+                TextColumn::make("blogId"),
+                IconColumn::make('status')->boolean(),
             ])
             ->filters([
                 //
@@ -61,9 +67,9 @@ class CategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCategories::route('/'),
-            'create' => Pages\CreateCategory::route('/create'),
-            'edit' => Pages\EditCategory::route('/{record}/edit'),
+            'index' => Pages\ListComments::route('/'),
+            'create' => Pages\CreateComment::route('/create'),
+            'edit' => Pages\EditComment::route('/{record}/edit'),
         ];
     }
 }
