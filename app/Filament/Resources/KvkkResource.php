@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class KvkkResource extends Resource
 {
 
-    protected static ?string $navigationGroup = "Kvkk Task";
+    protected static ?string $navigationGroup = "Official Documents";
 
     protected static ?string $model = Kvkk::class;
 
@@ -47,9 +47,9 @@ class KvkkResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                // Tables\Actions\BulkActionGroup::make([
-                //     Tables\Actions\DeleteBulkAction::make(),
-                // ]),
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
             ]);
     }
 

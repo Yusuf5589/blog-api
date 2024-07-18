@@ -8,8 +8,12 @@ use Filament\Forms\Components\Select;
 use Filament\Resources\Pages\Page;
 use Filament\Pages\Auth\Register as BaseRegister;
 
-class Register extends BaseRegister 
+class Register extends BaseRegister
 {
+    protected static string $resource = UserResource::class;
+
+    protected static string $view = 'filament.resources.user-resource.pages.auth.register';
+
     protected function getForms(): array
     {
         return [
@@ -20,21 +24,10 @@ class Register extends BaseRegister
                         $this->getEmailFormComponent(),
                         $this->getPasswordFormComponent(),
                         $this->getPasswordConfirmationFormComponent(),
-                        $this->getRoleFormComponent(), 
                     ])
                     ->statePath('data'),
             ),
         ];
     }
- 
-    protected function getRoleFormComponent(): Component
-    {
-        return Select::make('role')
-            ->options([
-                'buyer' => 'Buyer',
-                'seller' => 'Seller',
-            ])
-            ->default('buyer')
-            ->required();
-    }
+
 }

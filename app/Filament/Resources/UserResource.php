@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class UserResource extends Resource
 {
 
-    protected static ?string $navigationGroup = "User Task";
+    protected static ?string $navigationGroup = "Admin Controls";
     protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
@@ -33,7 +33,7 @@ class UserResource extends Resource
             ->schema([
                 TextInput::make('name')->required(),
                 TextInput::make('email')->required()->email(),
-                TextInput::make('password')->required()->password(),
+                TextInput::make('password')->nullable(),
                 Select::make('roles')
                 ->relationship('roles', 'name')
                 ->multiple()

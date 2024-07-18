@@ -28,7 +28,8 @@ use Symfony\Component\VarDumper\Caster\ImgStub;
 
 class BlogResource extends Resource
 {
-    protected static ?string $navigationGroup = "Blog Task";
+    protected static ?string $navigationGroup = "General Controls";
+
     protected static ?string $model = Blog::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -39,7 +40,7 @@ class BlogResource extends Resource
             ->schema([
                 TextInput::make('title')->required(),
                 TextInput::make('description')->required(),
-                DatePicker::make("beginning_date")->label("Starter Date"),
+                DatePicker::make("beginning_date")->label("Starter Date")->minDate(now()),
                 DatePicker::make("finish_date")->label("Finish Date")->after("beginning_date")->minDate(now()->addDay()),
                 TagsInput::make("tags")->required(),
                 Select::make('category_id')->label("Category")->options(Category::pluck("name","id"))->required(),
