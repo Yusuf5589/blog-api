@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PrivacyPolicyResource extends Resource
 {
-    protected static ?string $navigationGroup = "Privacy Task";
+    protected static ?string $navigationGroup = "Official Documents";
 
     protected static ?string $model = Privacy_Policy::class;
 
@@ -47,9 +47,9 @@ class PrivacyPolicyResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                // Tables\Actions\BulkActionGroup::make([
-                //     Tables\Actions\DeleteBulkAction::make(),
-                // ]),
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
             ]);
     }
 

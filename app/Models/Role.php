@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     use HasFactory;
+    protected static ?string $navigationGroup = "Admin Controls";
 }
