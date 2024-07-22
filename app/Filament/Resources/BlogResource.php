@@ -9,6 +9,7 @@ use App\Models\Category;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
@@ -39,7 +40,7 @@ class BlogResource extends Resource
         return $form
             ->schema([
                 TextInput::make('title')->required(),
-                TextInput::make('description')->required(),
+                MarkdownEditor::make('description')->required(),
                 DatePicker::make("beginning_date")->label("Starter Date")->minDate(now()),
                 DatePicker::make("finish_date")->label("Finish Date")->after("beginning_date")->minDate(now()->addDay()),
                 TagsInput::make("tags")->required(),
@@ -55,7 +56,13 @@ class BlogResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('title'),
-                TextColumn::make('description'),
+                TextColumn::make('description')
+                ->extraAttributes([
+                    'style' => '
+                                overflow: hidden; 
+                                text-overflow: ellipsis; 
+                                white-space: normal;',
+                ]),            
                 TextColumn::make('beginning_date'),
                 TextColumn::make('finish_date'),
                 TextColumn::make('tags'),

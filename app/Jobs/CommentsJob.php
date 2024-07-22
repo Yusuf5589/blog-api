@@ -25,6 +25,6 @@ class CommentsJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::to("yusufakapkiner@gmail.com")->send(new CommentsMail());
+        Mail::to(env("MAIL"))->send(new CommentsMail());
     }
 }

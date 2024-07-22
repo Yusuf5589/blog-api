@@ -27,4 +27,26 @@ class BlogController extends Controller
             ]);
         }
     }
+
+
+
+    public function getBlogFirst($id){
+        try {
+            return $this->data->getBlogFirstRep($id);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                "status" =>"error",
+                "message" =>$th->getMessage(),
+            ]);
+        }
+
+    }
+
+
+    public function blogView($id){
+        return $this->data->blogViewRep($id);
+    }
+
+
 }

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('finish_date');
             $table->integer('category_id');
             $table->json('tags');
-            $table->integer('view_count')->nullable();
+            $table->integer('view_count')->default(0);
             $table->string('img_url');
             $table->string('status');
             $table->timestamps();

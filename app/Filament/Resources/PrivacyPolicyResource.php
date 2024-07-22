@@ -7,6 +7,7 @@ use App\Filament\Resources\PrivacyPolicyResource\RelationManagers;
 use App\Models\Privacy_Policy;
 use App\Models\PrivacyPolicy;
 use Filament\Forms;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -29,7 +30,7 @@ class PrivacyPolicyResource extends Resource
         return $form
             ->schema([
                 TextInput::make('title'),
-                TextInput::make('description')
+                MarkdownEditor::make('description')
             ]);
     }
 

@@ -2,8 +2,9 @@
 
 namespace App\Interface;
 
-interface CommonInterface
+interface GeneralInterface
 {
     public function getRep();
+
     
 }

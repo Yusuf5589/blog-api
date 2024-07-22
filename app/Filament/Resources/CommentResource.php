@@ -39,7 +39,13 @@ class CommentResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make("comments"),
+                TextColumn::make("comments")
+                ->extraAttributes([
+                    'style' => '
+                                overflow: hidden; 
+                                text-overflow: ellipsis; 
+                                white-space: normal;',
+                ]),
                 TextColumn::make("comments_gmail"),
                 TextColumn::make("blogId"),
                 IconColumn::make('status')->boolean(),

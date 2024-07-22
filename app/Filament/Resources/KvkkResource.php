@@ -6,6 +6,7 @@ use App\Filament\Resources\KvkkResource\Pages;
 use App\Filament\Resources\KvkkResource\RelationManagers;
 use App\Models\Kvkk;
 use Filament\Forms;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -29,7 +30,7 @@ class KvkkResource extends Resource
         return $form
             ->schema([
                 TextInput::make('title'),
-                TextInput::make('description')
+                MarkdownEditor::make('description')
             ]);
     }
 
@@ -38,7 +39,7 @@ class KvkkResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('title'),
-                TextColumn::make('description')
+                MarkdownEditor::make('description')
             ])
             ->filters([
                 //

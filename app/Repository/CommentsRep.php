@@ -23,7 +23,7 @@ class CommentsRep
     public function getCommentRep($blogId){
         
         
-        $comments = Comment::where("blogId", $blogId)->get();
+        $comments = Comment::where("blogId", $blogId)->where("status", true)->get();
 
         return response()->json([
             "status" => "success",
