@@ -13,7 +13,7 @@ class CommentsController extends Controller
         $this->comments = $comments;
     }
 
-    
+    //eğer ki girdiği verilerde validate hatası yoksa repoyu çagırıyor.
     public function commentsSend(Request $req){
         $req->validate([
             "comments" => "required",
@@ -34,7 +34,7 @@ class CommentsController extends Controller
             ]);
         }
     }
-
+    //repoyu çagırıyor
     public function getComment($blogId){
         try {
 

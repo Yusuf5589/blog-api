@@ -53,7 +53,7 @@ class User extends Authenticatable implements FilamentUser,HasAvatar
         ];
     }
 
-
+    //eğer yeni resim eklendiyse öncekini siliyor veya blog silindiyse strogedaki resmi siliyor
     protected static function booted()
     {
         static::updating(function ($user) {
@@ -72,12 +72,12 @@ class User extends Authenticatable implements FilamentUser,HasAvatar
         });
     }
 
-    public function getProfilePhotoUrlAttribute()
-    {
-    return $this->profile_photo
-        ? asset('storage/' . $this->profile_photo)
-        : asset('storage/profile_photos/default.jpg');
-    }
+    // public function getProfilePhotoUrlAttribute()
+    // {
+    // return $this->profile_photo
+    //     ? asset('storage/' . $this->profile_photo)
+    //     : asset('storage/profile_photos/default.jpg');
+    // }
 
 
     public function getFilamentAvatarUrl(): ?string

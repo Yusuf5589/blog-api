@@ -11,6 +11,8 @@ class PrivacyRepository implements GeneralInterface
     /**
      * Create a new class instance.
      */
+
+    //Privacy_Policy modelinde verileri çağırıp json formatında döndürüyor
     public function getRep()
     {
         $data = Privacy_Policy::get();

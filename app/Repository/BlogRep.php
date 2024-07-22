@@ -11,6 +11,7 @@ class BlogRep implements GeneralInterface
 
     public function getRep(){
         try {
+            //Aktif olab blogları cache kaydedip json formatında döndürüyor.
             $blog = Blog::where("status", true)->orderByDesc("view_count");
             
             Cache::put("getblog", $blog->get(), 60*60); 
@@ -31,7 +32,7 @@ class BlogRep implements GeneralInterface
     }
 
 
-
+    //idsini girdiğimiz blogu getiriyor
     public function getBlogFirstRep($id){
 
         return response()->json([
@@ -40,7 +41,7 @@ class BlogRep implements GeneralInterface
         ]);
     }
 
-
+    //tıklandığında görüntülanme sayısını arttırıyor.
     public function blogViewRep($id){
 
         $blog = Blog::get()->where("id", $id)->first();

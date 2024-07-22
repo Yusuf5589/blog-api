@@ -40,6 +40,12 @@ class PrivacyPolicyResource extends Resource
             ->columns([
                 TextColumn::make('title'),
                 TextColumn::make('description')
+                ->extraAttributes([
+                    'style' => '
+                                overflow: hidden; 
+                                text-overflow: ellipsis; 
+                                white-space: normal;',
+                ]),     
             ])
             ->filters([
                 //

@@ -39,7 +39,13 @@ class KvkkResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('title'),
-                MarkdownEditor::make('description')
+                TextColumn::make('description')
+                ->extraAttributes([
+                    'style' => '
+                                overflow: hidden; 
+                                text-overflow: ellipsis; 
+                                white-space: normal;',
+                ]),     
             ])
             ->filters([
                 //

@@ -14,6 +14,7 @@ class CategoryController extends Controller
         $this->data = $categoryRepository;
     }
 
+    //repoyu çagırıyor
     public function getCategory(){
         try {
             return $this->data->getRep();
@@ -26,7 +27,7 @@ class CategoryController extends Controller
         }
     }
 
-
+    //repoyu çagırıyor
     public function getCategorySlug($category){
         try {
             return $this->data->getCategorySlugRep($category);
@@ -39,7 +40,7 @@ class CategoryController extends Controller
         }
     }
 
-
+    //repoyu çagırıyor
     public function getCategoryFirst($category){
         try {
             return $this->data->getCategoryFirstRep($category);

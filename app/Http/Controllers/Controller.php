@@ -15,7 +15,7 @@ class Controller
         $this->privacy = $privacyRepository;
     }
 
-
+    //repoyu çagırıyor
     public function getKvkk(){
         try {
 
@@ -29,7 +29,7 @@ class Controller
         }
     }
 
-
+    //repoyu çagırıyor
     public function getPrivacy(){
         try {
 

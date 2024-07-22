@@ -12,10 +12,12 @@ class BlogController extends Controller
 
     protected $data;
 
+    //bura repositorydeki işlemleri çekmeye veya oraya veri yollamaya yarıyor
     public function __construct(BlogRep $blogRepository){
         $this->data = $blogRepository;
     }
 
+    //tüm blogları bize repositoryden getiriyor
     public function getBlog(){
         try {
             return $this->data->getRep();
@@ -29,7 +31,7 @@ class BlogController extends Controller
     }
 
 
-
+    //idsini girdiğimiz blog geliyor sadece
     public function getBlogFirst($id){
         try {
             return $this->data->getBlogFirstRep($id);
@@ -43,7 +45,7 @@ class BlogController extends Controller
 
     }
 
-
+    //repositorydeki tıklandığında görüntülanme sayısını arttırdığı functionu çağrıyor.
     public function blogView($id){
         return $this->data->blogViewRep($id);
     }

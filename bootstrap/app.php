@@ -18,6 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         
     })->withSchedule(function (Schedule $schedule) {
+        //Schedule ile her gece 12'de tarihi gelen blogları aktif ediyor.Eğer tarihi geçtiyse pasif yapıyor.
         $schedule->call(function(){
             $date = Carbon::now()->toDateString();
             Blog::where('beginning_date',"<=", $date)->update([

@@ -25,6 +25,7 @@ class CommentsJob implements ShouldQueue
      */
     public function handle(): void
     {
+        //Burada hangi Maile gidiceğini Envden gösterip maili yolluyoruz.
         Mail::to(env("MAIL"))->send(new CommentsMail());
     }
 }

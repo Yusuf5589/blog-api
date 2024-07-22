@@ -14,6 +14,7 @@ class CommentsMail extends Mailable
     use Queueable, SerializesModels;
 
     public function build(){
+        //burada Blade sayfasına yölendirip yollandığımız mailin sayfasını ayarlıyoruz.
         return $this->view('mail.comments')->subject("New Comments");
     }
 

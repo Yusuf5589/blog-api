@@ -7,7 +7,7 @@ use App\Models\Comment;
 
 class CommentsRep
 {
-
+    //Database yorum oluşturuyor ve mail yollama işlemini çalıştırıyor(JOB)
     public function commentsSendRep(array $req){
         Comment::create([
             "comments" => $req["comments"],
@@ -19,7 +19,7 @@ class CommentsRep
     }
 
 
-
+    //Blog idyi alıp idsi eeşlesen tüm yorumları json formatında döndürüyor
     public function getCommentRep($blogId){
         
         

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class Blog extends Model
 {
     use HasFactory;
-
+    //Blog Model Veritabanı işlemlerimizi kolaylaştırıyor
     protected $table = 'blog'; 
     protected $fillable = [
         'title',
@@ -53,6 +53,7 @@ class Blog extends Model
     
 
 
+    //eğer yeni resim eklendiyse öncekini siliyor veya blog silindiyse strogedaki resmi siliyor
     protected static function booted()
     {
         static::updating(function ($user) {
