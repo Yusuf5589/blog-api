@@ -19,14 +19,12 @@ Projemizin Paket ve Bağımlılıklarını indirmek için "composer install" kom
 ".env" dosyasında bulunan mail kısmına kendi, çalışan mail adresimizi ve hostumuzu giriyoruz.
 Yeni Kullanıcı Oluşturuyoruz, bunun için "php artisan make:filament-user" komutunu kullanıp bilgilerimizi giriyoruz
 Kullanıcıya admin rolü verebilmek içinse, "php artisan shield:install" komutunu çalıştırıyoruz
-"php artisan queue:listen" komutunu çalıştırarak queue ile mailerin gitmesini sağlayabilirsiniz.
-"php artisan schedule:work" komutunu çalıştırarak otomatik aftif ve pasif blog sistemini açabilirsiniz.
-Projeyi bu şekilde klonlayabiliriz.
+
 
 
 ## Project Setup
 
-Let's clone our project, now the first thing we need to do is install git, you can download git from its own page “https://git-scm.com/downloads” After downloading git, we create a file for our project and open the git bash terminal on it. then “'https://github.com/Yusuf5589/blog-api.git'” command and copy our project into the file you created.
+Let's clone our project, now the first thing we need to do is install git, you can download git from its own page “https://git-scm.com/downloads” After downloading git, we create a file for our project and open the git bash terminal on it. then “git clone 'https://github.com/Yusuf5589/blog-api.git'” command and copy our project into the file you created.
 
 After the project is copied, we need to do a few more steps;
 
@@ -36,6 +34,3 @@ We type the command “composer install” to download the packages and dependen
 We enter our own, working e-mail address and host in the mail section in the “.env” file.
 Create a new user, for this we use the command “php artisan make:filament-user” and enter our information
 To give the user the admin role, we run the “php artisan shield:install” command
-By running the “php artisan queue:listen” command, you can make the mail go with the queue.
-By running “php artisan schedule:work” command, you can turn on automatic aftive and passive blog system.
-This is how we can clone the project.
