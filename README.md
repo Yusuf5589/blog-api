@@ -7,60 +7,35 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Proje Kurulumu
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Projemizi Klonlıyalım şimdi ilk yapmamız gereken git yüklemek giti kendi sayfasından indirebilirsiniz "https://git-scm.com/downloads" git'i indirdikten sonra projemiz için bir dosya oluşturup üzerine git bash terminalini açıyoruz. sonrasında "git clone 'https://github.com/Yusuf5589/blog-api.git'" komutunu çalıştırıp projemizi oluşturduğunuz dosya içine kopyalıyorsunuz.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Proje kopyalandıktan sonra birkaç işlem daha yapmamız gerekiyor;
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Projemizde bulunan .env.example dosyasını .env dosyasına kopyalamamız gerekir bunun için "copy .env.example .env" komutunu çalıştırıyoruz.(.env dosyası kendi oluşuyor.)
+Projeyi Docker Üzerinden çalıştırmak için "docker-compose up -d" komutunu çalıştırın.
+Projemizin Paket ve Bağımlılıklarını indirmek için "composer install" komutunu yazıyoruz (composer kurulu olmalıdır.)
+".env" dosyasında bulunan mail kısmına kendi, çalışan mail adresimizi ve hostumuzu giriyoruz.
+Yeni Kullanıcı Oluşturuyoruz, bunun için "php artisan make:filament-user" komutunu kullanıp bilgilerimizi giriyoruz
+Kullanıcıya admin rolü verebilmek içinse, "php artisan shield:install" komutunu çalıştırıyoruz
+"php artisan queue:listen" komutunu çalıştırarak queue ile mailerin gitmesini sağlayabilirsiniz.
+"php artisan schedule:work" komutunu çalıştırarak otomatik aftif ve pasif blog sistemini açabilirsiniz.
+Projeyi bu şekilde klonlayabiliriz.
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Project Setup
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Let's clone our project, now the first thing we need to do is install git, you can download git from its own page “https://git-scm.com/downloads” After downloading git, we create a file for our project and open the git bash terminal on it. then “'https://github.com/Yusuf5589/blog-api.git'” command and copy our project into the file you created.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+After the project is copied, we need to do a few more steps;
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Run the “docker-compose up -d” command to run the project via Docker.
+We need to copy the .env.example file in our project to the .env file, for this we run the “copy .env.example .env” command.(.env file is created by itself.)
+We type the command “composer install” to download the packages and dependencies of our project (composer must be installed.)
+We enter our own, working e-mail address and host in the mail section in the “.env” file.
+Create a new user, for this we use the command “php artisan make:filament-user” and enter our information
+To give the user the admin role, we run the “php artisan shield:install” command
+By running the “php artisan queue:listen” command, you can make the mail go with the queue.
+By running “php artisan schedule:work” command, you can turn on automatic aftive and passive blog system.
+This is how we can clone the project.
