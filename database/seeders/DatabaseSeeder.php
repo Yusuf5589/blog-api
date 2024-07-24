@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-
+        $this->call(KvkkSeeder::class);
+        $this->call(PrivacySeeder::class);
     }
 }
