@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\CommentsMail;
 use App\Models\Blog;
 use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
@@ -7,6 +8,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\Mail;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -30,7 +32,7 @@ return Application::configure(basePath: dirname(__DIR__))
             Blog::where('finish_date',"<", $date)->update([
                 'status' => 0
             ]);
-        })->everyTwentySeconds();
+        })->dailyAt('00:00');
     })
     ->withExceptions(function (Exceptions $exceptions) {
 

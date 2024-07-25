@@ -1,12 +1,12 @@
 services:
   app:
     build:
-      context: .
+      context: ./docker
       dockerfile: Dockerfile
     ports:
-      - "8181:8080"
+      - "8181:8181"
     volumes:
-      - .:/app
+      - .:/var/www/html
     environment:
       - APP_ENV=local
       - APP_DEBUG=true
@@ -40,6 +40,5 @@ services:
     container_name: redis
     ports:
       - "6379:6379"
-
 volumes:
   dbdata:
