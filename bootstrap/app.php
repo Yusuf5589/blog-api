@@ -21,18 +21,18 @@ return Application::configure(basePath: dirname(__DIR__))
         
     })->withSchedule(function (Schedule $schedule) {
         //Schedule ile her gece 12'de tarihi gelen blogları aktif ediyor.Eğer tarihi geçtiyse pasif yapıyor.
-        $schedule->call(function(){
-            $date = Carbon::now()->toDateString();
-            Blog::where('beginning_date',"<=", $date)->update([
-                'status' => 1
-            ]);
-            Blog::where('finish_date',">", $date)->update([
-                'status' => 1
-            ]);
-            Blog::where('finish_date',"<", $date)->update([
-                'status' => 0
-            ]);
-        })->dailyAt('00:00');
+        // $schedule->call(function(){
+        //     $date = Carbon::now()->toDateString();
+        //     Blog::where('beginning_date',"<=", $date)->update([
+        //         'status' => 1
+        //     ]);
+        //     Blog::where('finish_date',">", $date)->update([
+        //         'status' => 1
+        //     ]);
+        //     Blog::where('finish_date',"<", $date)->update([
+        //         'status' => 0
+        //     ]);
+        // })->dailyAt('00:00');
     })
     ->withExceptions(function (Exceptions $exceptions) {
 
