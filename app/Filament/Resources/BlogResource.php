@@ -46,7 +46,7 @@ class BlogResource extends Resource
                 TagsInput::make("tags")->required(),
                 Select::make('category_id')->label("Category")->options(Category::pluck("name","id"))->required(),
                 FileUpload::make("img_url")->disk("public")->directory("img_url")->required(),
-                Toggle::make('status')->onColor('success')->offColor('danger')
+                Toggle::make('status')->onColor('success')->offColor('danger')->visible(fn()=>auth()->user()->hasRole("super_admin"))
             ]);
     }
 
