@@ -4,7 +4,7 @@ namespace App\Interface;
 
 interface GeneralInterface
 {
-    public function getRep();
+    public function getApiRepository();
 
     
 }

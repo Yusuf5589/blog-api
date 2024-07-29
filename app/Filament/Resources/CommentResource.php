@@ -29,7 +29,7 @@ class CommentResource extends Resource
         return $form
             ->schema([
                 TextInput::make("comments"),
-                TextInput::make("comments_gmail"),
+                TextInput::make("comments_mail"),
                 TextInput::make("blogId"),
                 Toggle::make("status")->onColor('success')->offColor('danger'),
             ]);
@@ -46,7 +46,7 @@ class CommentResource extends Resource
                                 text-overflow: ellipsis; 
                                 white-space: normal;',
                 ]),
-                TextColumn::make("comments_gmail"),
+                TextColumn::make("comments_mail"),
                 TextColumn::make("blogId"),
                 IconColumn::make('status')->boolean(),
             ])

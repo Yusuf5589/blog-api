@@ -6,15 +6,15 @@ use App\Interface\GeneralInterface;
 use App\Models\Blog;
 use Illuminate\Support\Facades\Cache;
 
-class BlogRep implements GeneralInterface
+class BlogRepository implements GeneralInterface
 {
 
-    public function getRep(){
+    public function getApiRepository(){
         try {
             //Aktif olab blogları cache kaydedip json formatında döndürüyor.
-            $blog = Blog::where("status", true)->orderByDesc("view_count");
+            $blog = Blog::where("status", true)->orderByDesc("view_count")->get();
             
-            Cache::put("getblog", $blog->get(), 60*60); 
+            Cache::put("getblog", $blog, 60*60); 
 
             return response()->json([
                 "status" => "success",

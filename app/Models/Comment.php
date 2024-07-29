@@ -12,6 +12,6 @@ class Comment extends Model
     //Comment Model Veritabanı işlemlerimizi kolaylaştırıyor
 
     protected $table = "comment";
-    protected $fillable = ["comments", "comments_gmail", "blogId", "status", "created_at", "updated_at"];
+    protected $fillable = ["comments", "comments_mail", "blogId", "status", "created_at", "updated_at"];
 
 }

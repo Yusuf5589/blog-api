@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Repository\CommentsRep;
+use App\Repository\CommentsRepository;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
 {
     protected $comments;
 
-    public function __construct(CommentsRep $comments){
+    public function __construct(CommentsRepository $comments){
         $this->comments = $comments;
     }
 
@@ -17,7 +17,7 @@ class CommentsController extends Controller
     public function commentsSend(Request $req){
         $req->validate([
             "comments" => "required",
-            "comments_gmail" => "required|email",
+            "comments_mail" => "required|email",
             "blogId" => "required",
         ]);
         

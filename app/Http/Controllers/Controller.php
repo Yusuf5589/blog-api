@@ -19,7 +19,7 @@ class Controller
     public function getKvkk(){
         try {
 
-            return $this->kvkk->getRep();
+            return $this->kvkk->getApiRepository();
 
         } catch (\Throwable $th) {
             return response()->json([
@@ -33,7 +33,7 @@ class Controller
     public function getPrivacy(){
         try {
 
-            return $this->privacy->getRep();
+            return $this->privacy->getApiRepository();
 
         } catch (\Throwable $th) {
             return response()->json([
