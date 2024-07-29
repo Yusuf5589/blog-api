@@ -7,11 +7,11 @@ use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Support\Facades\Cache;
 
-class CategoryRep implements GeneralInterface
+class CategoryRepository implements GeneralInterface
 {
 
     //tüm categoryleri getirip json formatında dönüyor.
-    public function getRep(){
+    public function getApiRepository(){
         try {
             $category = Category::all();
             Cache::put("getcategory", $category, 60*60); 
@@ -32,23 +32,23 @@ class CategoryRep implements GeneralInterface
 
     //category_idsi tutan tüm blogları veritabanından çagırıp json formatında dönüyor
     public function getCategorySlugRep($category){
-        $data = Blog::where("category_id", $category)->get();
+        $categoryApi = Blog::where("category_id", $category)->get();
 
     
         return response()->json([
             "status" => "success",
-            "api" => $data,
+            "api" => $categoryApi,
         ]);
     }
     
     //idsi tutan categoryi databaseden çağırıp json formatında dönüyor.
     public function getCategoryFirstRep($category){
-        $data = Category::where("id", $category)->first();
+        $categoryFirstApi = Category::where("id", $category)->first();
 
     
         return response()->json([
             "status" => "success",
-            "api" => $data,
+            "api" => $categoryFirstApi,
         ]);
     }
 

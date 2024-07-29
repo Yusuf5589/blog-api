@@ -12,12 +12,12 @@ class PrivacyRepository implements GeneralInterface
      */
 
     //Privacy_Policy modelinde verileri çağırıp json formatında döndürüyor
-    public function getRep()
+    public function getApiRepository()
     {
-        $data = Policy::where('slug', "privacy_policy")->get();
+        $privacyApi = Policy::where('slug', "privacy_policy")->get();
         return response()->json([
             "status" => "success",
-            "api" => $data,
+            "api" => $privacyApi,
         ]);
         
     }

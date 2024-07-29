@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 class Blog extends Model
 {
     use HasFactory;
+    protected $appends = ['image_url'];
+
     //Blog Model Veritabanı işlemlerimizi kolaylaştırıyor
     protected $table = 'blog'; 
     protected $fillable = [
@@ -44,7 +46,6 @@ class Blog extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
-    protected $appends = ['image_url'];
 
     public function getImageUrlAttribute()
     {

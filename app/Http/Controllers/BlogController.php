@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Entities\BlogRepository;
-use App\Repository\BlogRep;
+
+use App\Repository\BlogRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
 class BlogController extends Controller
 {
 
-    protected $data;
+    protected $blogRepository;
 
     //bura repositorydeki işlemleri çekmeye veya oraya veri yollamaya yarıyor
-    public function __construct(BlogRep $blogRepository){
-        $this->data = $blogRepository;
+    public function __construct(BlogRepository $blogRepository){
+        $this->blogRepository = $blogRepository;
     }
 
     //tüm blogları bize repositoryden getiriyor
     public function getBlog(){
         try {
-            return $this->data->getRep();
+            return $this->blogRepository->getApiRepository();
 
         } catch (\Throwable $th) {
             return response()->json([
@@ -34,7 +34,7 @@ class BlogController extends Controller
     //idsini girdiğimiz blog geliyor sadece
     public function getBlogFirst($id){
         try {
-            return $this->data->getBlogFirstRep($id);
+            return $this->blogRepository->getBlogFirstRep($id);
 
         } catch (\Throwable $th) {
             return response()->json([
@@ -46,9 +46,9 @@ class BlogController extends Controller
     }
 
     //repositorydeki tıklandığında görüntülanme sayısını arttırdığı functionu çağrıyor.
-    public function blogView($id){
-        return $this->data->blogViewRep($id);
-    }
+    // public function blogView($id){
+    //     return $this->blogRepository->blogViewRep($id);
+    // }
 
 
 }

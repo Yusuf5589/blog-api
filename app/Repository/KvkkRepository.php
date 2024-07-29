@@ -12,12 +12,12 @@ class KvkkRepository implements GeneralInterface
      * Create a new class instance.
      */
     //Kvkk modelinde verileri çağırıp json formatında döndürüyor
-    public function getRep()
+    public function getApiRepository()
     {
-        $data = Policy::where('slug', "kvkk")->get();
+        $kvkkApi = Policy::where('slug', "kvkk")->get();
         return response()->json([
             "status" => "success",
-            "api" => $data,
+            "api" => $kvkkApi,
         ]);
         
     }

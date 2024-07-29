@@ -3,21 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Repository\CategoryRep;
+use App\Repository\CategoryRepository;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    protected $data;
+    protected $categoryRepository;
 
-    public function __construct(CategoryRep $categoryRepository){
-        $this->data = $categoryRepository;
+    public function __construct(CategoryRepository $categoryRepository){
+        $this->categoryRepository = $categoryRepository;
     }
 
     //repoyu çagırıyor
     public function getCategory(){
         try {
-            return $this->data->getRep();
+            return $this->categoryRepository->getApiRepository();
 
         } catch (\Throwable $th) {
             return response()->json([
@@ -30,7 +30,7 @@ class CategoryController extends Controller
     //repoyu çagırıyor
     public function getCategorySlug($category){
         try {
-            return $this->data->getCategorySlugRep($category);
+            return $this->categoryRepository->getCategorySlugRep($category);
 
         } catch (\Throwable $th) {
             return response()->json([
@@ -43,7 +43,7 @@ class CategoryController extends Controller
     //repoyu çagırıyor
     public function getCategoryFirst($category){
         try {
-            return $this->data->getCategoryFirstRep($category);
+            return $this->categoryRepository->getCategoryFirstRep($category);
 
         } catch (\Throwable $th) {
             return response()->json([

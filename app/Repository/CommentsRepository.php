@@ -2,20 +2,20 @@
 
 namespace App\Repository;
 use App\Interface\CommonInterface;
-use App\Jobs\CommentsJob;
+use App\Jobs\NewCommentSendMail;
 use App\Models\Comment;
 
-class CommentsRep
+class CommentsRepository
 {
     //Database yorum oluşturuyor ve mail yollama işlemini çalıştırıyor(JOB)
     public function commentsSendRep(array $req){
         Comment::create([
             "comments" => $req["comments"],
-            "comments_gmail" => $req["comments_gmail"],
+            "comments_mail" => $req["comments_mail"],
             "blogId" => $req["blogId"],
             "status" => 0,
         ]);
-        CommentsJob::dispatch();
+        NewCommentSendMail::dispatch();
     }
 
 
