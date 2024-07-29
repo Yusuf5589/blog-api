@@ -6,6 +6,8 @@
 /storage/*.key
 /supervisord.log
 /supervisord.pid
+supervisord.log
+supervisord.pid
 /vendor
 .env
 .env.backup
