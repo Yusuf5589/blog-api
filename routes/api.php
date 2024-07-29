@@ -4,6 +4,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,7 @@ Route::get('/blog/get', [BlogController::class, "getBlog"]);
 
 Route::get('/blog/get/{id}', [BlogController::class, "getBlogFirst"]);
 
-Route::get('/category/view/{id}', [BlogController::class, "blogView"]);
+// Route::get('/category/view/{id}', [Blog::class, "retrieved"]);
 
 
 

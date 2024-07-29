@@ -7,19 +7,6 @@ services:
       - "8181:8181"
     volumes:
       - .:/var/www/html
-    # environment:
-    #   - APP_ENV=local
-    #   - APP_DEBUG=true
-    #   - APP_KEY=base64:YOUR_APP_KEY
-    #   - CACHE_DRIVER=redis
-    #   - QUEUE_CONNECTION=redis
-    #   - REDIS_HOST=redis
-    #   - DB_CONNECTION=mysql
-    #   - DB_HOST=db
-    #   - DB_PORT=3306
-    #   - DB_DATABASE=blogdb
-    #   - DB_USERNAME=root
-    #   - DB_PASSWORD=root_password
     depends_on:
       - db
       - redis

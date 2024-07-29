@@ -2,11 +2,10 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\KvkkResource\Pages;
-use App\Filament\Resources\KvkkResource\RelationManagers;
-use App\Models\Kvkk;
+use App\Filament\Resources\PrivacyResource\Pages;
+use App\Filament\Resources\PrivacyResource\RelationManagers;
+use App\Models\Policy;
 use Filament\Forms;
-use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -16,12 +15,11 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class KvkkResource extends Resource
+class PrivacyResource extends Resource
 {
 
-    protected static ?string $navigationGroup = "Official Documents";
-
-    protected static ?string $model = Kvkk::class;
+    protected static ?string $navigationGroup = "General Controls";
+    protected static ?string $model = Policy::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -29,8 +27,9 @@ class KvkkResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('title'),
-                MarkdownEditor::make('description')
+                TextInput::make("title"),
+                TextInput::make("description"),
+                TextInput::make("slug"),
             ]);
     }
 
@@ -38,14 +37,9 @@ class KvkkResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('title'),
-                TextColumn::make('description')
-                ->extraAttributes([
-                    'style' => '
-                                overflow: hidden; 
-                                text-overflow: ellipsis; 
-                                white-space: normal;',
-                ]),     
+                TextColumn::make("title"),
+                TextColumn::make("description"),
+                TextColumn::make("slug"),
             ])
             ->filters([
                 //
@@ -70,9 +64,9 @@ class KvkkResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListKvkks::route('/'),
-            'create' => Pages\CreateKvkk::route('/create'),
-            'edit' => Pages\EditKvkk::route('/{record}/edit'),
+            'index' => Pages\ListPrivacies::route('/'),
+            'create' => Pages\CreatePrivacy::route('/create'),
+            'edit' => Pages\EditPrivacy::route('/{record}/edit'),
         ];
     }
 }

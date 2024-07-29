@@ -3,8 +3,7 @@
 namespace App\Repository;
 
 use App\Interface\GeneralInterface;
-use App\Models\Kvkk;
-use App\Models\Privacy_Policy;
+use App\Models\Policy;
 
 class PrivacyRepository implements GeneralInterface
 {
@@ -15,7 +14,7 @@ class PrivacyRepository implements GeneralInterface
     //Privacy_Policy modelinde verileri çağırıp json formatında döndürüyor
     public function getRep()
     {
-        $data = Privacy_Policy::get();
+        $data = Policy::where('slug', "privacy_policy")->get();
         return response()->json([
             "status" => "success",
             "api" => $data,

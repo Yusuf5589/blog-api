@@ -56,6 +56,7 @@ class Blog extends Model
     //eğer yeni resim eklendiyse öncekini siliyor veya blog silindiyse strogedaki resmi siliyor
     protected static function booted()
     {
+        parent::boot();
         static::updating(function ($user) {
             if ($user->isDirty('img_url')) {
                 $oldPhoto = $user->getOriginal('img_url');
@@ -70,6 +71,12 @@ class Blog extends Model
                 Storage::disk('public')->delete($user->img_url);
             }
         });
+
+
+        static::retrieved(function ($blog) {
+            $blog->increment('view_count');
+        });
+        
     }
 
 

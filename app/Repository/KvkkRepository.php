@@ -3,7 +3,8 @@
 namespace App\Repository;
 
 use App\Interface\GeneralInterface;
-use App\Models\Kvkk;
+use App\Models\Policy;
+
 
 class KvkkRepository implements GeneralInterface
 {
@@ -13,7 +14,7 @@ class KvkkRepository implements GeneralInterface
     //Kvkk modelinde verileri çağırıp json formatında döndürüyor
     public function getRep()
     {
-        $data = Kvkk::get();
+        $data = Policy::where('slug', "kvkk")->get();
         return response()->json([
             "status" => "success",
             "api" => $data,

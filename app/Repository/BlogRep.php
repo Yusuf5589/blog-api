@@ -42,19 +42,19 @@ class BlogRep implements GeneralInterface
     }
 
     //tıklandığında görüntülanme sayısını arttırıyor.
-    public function blogViewRep($id){
+    // public function blogViewRep($id){
 
-        $blog = Blog::get()->where("id", $id)->first();
+    //     $blog = Blog::get()->where("id", $id)->first();
 
-        Blog::where("id", $id)->update([
-            "view_count" => $blog->view_count + 1
-        ]);
+    //     Blog::where("id", $id)->update([
+    //         "view_count" => $blog->view_count + 1
+    //     ]);
         
 
-        return response()->json([
-            "status" => "success",
-        ]);
-    }
+    //     return response()->json([
+    //         "status" => "success",
+    //     ]);
+    // }
 
     
 }
