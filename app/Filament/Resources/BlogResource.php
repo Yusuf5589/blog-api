@@ -15,6 +15,7 @@ use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
@@ -26,6 +27,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Date;
 use Symfony\Component\VarDumper\Caster\ImgStub;
+use Illuminate\Support\Str;
 
 class BlogResource extends Resource
 {
@@ -39,7 +41,8 @@ class BlogResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('title')->required(),
+                TextInput::make("title")->required()->reactive()->live(debounce:'500')->afterStateUpdated(fn(Set $set, $state)=>$set("slug", Str::slug($state))),
+                TextInput::make("slug")->required(),
                 MarkdownEditor::make('description')->required(),
                 DatePicker::make("beginning_date")
                 ->label("Starter Date")
@@ -47,7 +50,7 @@ class BlogResource extends Resource
                 DatePicker::make("finish_date")->label("Finish Date")->after("beginning_date")->minDate(now()->addDay()),
                 TagsInput::make("tags")->required(),
                 Select::make('category_id')->label("Category")->options(Category::pluck("name","id"))->required(),
-                FileUpload::make("img_url")->disk("public")->directory("img_url")->required(),
+                FileUpload::make("img_url")->disk("public")->directory("img_url")->default("img_url/blog-default.png"),
                 Toggle::make('status')->onColor('success')->offColor('danger')->visible(fn()=>auth()->user()->hasRole("super_admin"))
             ]);
     }

@@ -8,12 +8,14 @@ use App\Models\Category;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
 
 class CategoryResource extends Resource
 {
@@ -26,8 +28,8 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')->required(),
-                TextInput::make('slug')->required()->unique(),
+                TextInput::make("name")->required()->reactive()->live(debounce:'300')->afterStateUpdated(fn(Set $set, $state)=>$set("slug", Str::slug($state))),
+                TextInput::make("slug")->required()->reactive(),
             ]);
     }
 

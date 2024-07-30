@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\HandleExceptionsMiddleware;
 use App\Mail\CommentsMail;
 use App\Models\Blog;
 use Carbon\Carbon;
@@ -18,7 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        
+        HandleExceptionsMiddleware::class;
     })->withSchedule(function (Schedule $schedule) {
         //Schedule ile her gece 12'de tarihi gelen blogları aktif ediyor.Eğer tarihi geçtiyse pasif yapıyor.
         // $schedule->call(function(){

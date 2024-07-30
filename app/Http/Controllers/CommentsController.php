@@ -20,35 +20,19 @@ class CommentsController extends Controller
             "comments_mail" => "required|email",
             "blogId" => "required",
         ]);
-        
-        try {
+                
             $this->comments->commentsSendRep($req->all());
             return response()->json([
                 "status" =>"success",
                 "message" => "Comment created successfully",
             ]);
-        } catch (\Throwable $th) {
-            return response()->json([
-                "status" =>"error",
-                "message" =>$th->getMessage(),
-            ]);
-        }
+
     }
     //repoyu çagırıyor
     public function getComment($blogId){
-        try {
 
-            return $this->comments->getCommentRep($blogId);
-            
-        } 
-        catch (\Throwable $th) {
-            return response()->json([
-                "status" =>"error",
-                "message" =>$th->getMessage(),
-            ]);
-        }
+        return $this->comments->getCommentRep($blogId);
 
-    
     }
 
 }
