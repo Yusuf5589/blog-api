@@ -30,7 +30,7 @@ class CommentResource extends Resource
             ->schema([
                 TextInput::make("comments"),
                 TextInput::make("comments_mail"),
-                TextInput::make("blogId"),
+                TextInput::make("blogslug"),
                 Toggle::make("status")->onColor('success')->offColor('danger'),
             ]);
     }
@@ -47,7 +47,7 @@ class CommentResource extends Resource
                                 white-space: normal;',
                 ]),
                 TextColumn::make("comments_mail"),
-                TextColumn::make("blogId"),
+                TextColumn::make("blogslug"),
                 IconColumn::make('status')->boolean(),
             ])
             ->filters([

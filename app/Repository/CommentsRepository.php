@@ -12,7 +12,7 @@ class CommentsRepository
         Comment::create([
             "comments" => $req["comments"],
             "comments_mail" => $req["comments_mail"],
-            "blogId" => $req["blogId"],
+            "blogslug" => $req["blogslug"],
             "status" => 0,
         ]);
         NewCommentSendMail::dispatch();
@@ -20,10 +20,10 @@ class CommentsRepository
 
 
     //Blog idyi alıp idsi eeşlesen tüm yorumları json formatında döndürüyor
-    public function getCommentRep($blogId){
+    public function getCommentRep($blogslug){
         
         
-        $comments = Comment::where("blogId", $blogId)->where("status", true)->get();
+        $comments = Comment::where("blogslug", $blogslug)->where("status", true)->get();
 
         return response()->json([
             "status" => "success",

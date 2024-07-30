@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 //Comments Routes
 
-Route::get('/comment/get/{blogId}', [CommentsController::class, "getComment"]);
+Route::get('/comment/get/{blogslug}', [CommentsController::class, "getComment"]);
 
 Route::post('/comment/send', [CommentsController::class, "commentsSend"]);
 

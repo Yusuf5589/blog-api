@@ -18,7 +18,7 @@ class CommentsController extends Controller
         $req->validate([
             "comments" => "required",
             "comments_mail" => "required|email",
-            "blogId" => "required",
+            "blogslug" => "required",
         ]);
                 
             $this->comments->commentsSendRep($req->all());
@@ -29,9 +29,9 @@ class CommentsController extends Controller
 
     }
     //repoyu çagırıyor
-    public function getComment($blogId){
+    public function getComment($blogslug){
 
-        return $this->comments->getCommentRep($blogId);
+        return $this->comments->getCommentRep($blogslug);
 
     }
 
