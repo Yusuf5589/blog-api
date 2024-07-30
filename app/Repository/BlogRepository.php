@@ -24,11 +24,11 @@ class BlogRepository implements GeneralInterface
 
 
     //idsini girdiğimiz blogu getiriyor
-    public function getBlogFirstRep($id){
+    public function getBlogFirstRep($slug){
 
         return response()->json([
             "status" => "success",
-            "api" => Blog::get()->where("id", $id)->first(),
+            "api" => Blog::get()->where("slug", $slug)->first(),
         ]);
     }
 

@@ -26,9 +26,9 @@ class BlogController extends Controller
 
 
     //idsini girdiğimiz blog geliyor sadece
-    public function getBlogFirst($id){
+    public function getBlogFirst($slug){
 
-        return $this->blogRepository->getBlogFirstRep($id);
+        return $this->blogRepository->getBlogFirstRep($slug);
         
     }
 
