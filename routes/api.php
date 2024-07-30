@@ -21,7 +21,7 @@ Route::post('/comment/send', [CommentsController::class, "commentsSend"]);
 
 Route::get('/blog/get', [BlogController::class, "getBlog"]);
 
-Route::get('/blog/get/{id}', [BlogController::class, "getBlogFirst"]);
+Route::get('/blog/get/{slug}', [BlogController::class, "getBlogFirst"]);
 
 // Route::get('/category/view/{id}', [Blog::class, "retrieved"]);
 
