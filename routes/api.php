@@ -1,5 +1,6 @@
 <?php
 
+use App\Exceptions\CustomException;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentsController;

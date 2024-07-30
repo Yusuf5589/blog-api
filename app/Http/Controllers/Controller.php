@@ -17,30 +17,16 @@ class Controller
 
     //repoyu çagırıyor
     public function getKvkk(){
-        try {
 
-            return $this->kvkk->getApiRepository();
-
-        } catch (\Throwable $th) {
-            return response()->json([
-                "status" =>"error",
-                "message" =>$th->getMessage(),
-            ]);
-        }
+        return $this->kvkk->getApiRepository();
+        
     }
 
     //repoyu çagırıyor
     public function getPrivacy(){
-        try {
 
-            return $this->privacy->getApiRepository();
+        return $this->privacy->getApiRepository();
 
-        } catch (\Throwable $th) {
-            return response()->json([
-                "status" =>"error",
-                "message" =>$th->getMessage(),
-            ]);
-        }
     }
 
 

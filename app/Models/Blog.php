@@ -23,6 +23,7 @@ class Blog extends Model
         'view_count',
         'img_url',
         'status',
+        "slug"
     ];
 
     protected $casts = [

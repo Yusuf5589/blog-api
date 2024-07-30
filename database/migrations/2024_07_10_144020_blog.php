@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('blog', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug');
             $table->string('description');
             $table->date('beginning_date');
             $table->date('finish_date');
             $table->integer('category_id');
             $table->json('tags');
             $table->integer('view_count')->default(0);
-            $table->string('img_url');
+            $table->string('img_url')->default('img_url/blog-default.png');
             $table->string('status');
             $table->timestamps();
         });

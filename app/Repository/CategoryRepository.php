@@ -12,22 +12,13 @@ class CategoryRepository implements GeneralInterface
 
     //tüm categoryleri getirip json formatında dönüyor.
     public function getApiRepository(){
-        try {
-            $category = Category::all();
-            Cache::put("getcategory", $category, 60*60); 
+        $category = Category::all();
+        Cache::put("getcategory", $category, 60*60); 
 
-            return response()->json([
-                "status" => "success",
-                "api" => Cache::get("getcategory"),
-            ]);
-        } catch (\Throwable $th) {
-
-            return response()->json([
-                "status" =>"error",
-                "message" =>$th->getMessage(),
-            ]);
-            
-        }
+        return response()->json([
+            "status" => "success",
+            "api" => Cache::get("getcategory"),
+        ]);
     }
 
     //category_idsi tutan tüm blogları veritabanından çagırıp json formatında dönüyor

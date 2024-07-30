@@ -10,24 +10,15 @@ class BlogRepository implements GeneralInterface
 {
 
     public function getApiRepository(){
-        try {
-            //Aktif olab blogları cache kaydedip json formatında döndürüyor.
-            $blog = Blog::where("status", true)->orderByDesc("view_count")->get();
-            
-            Cache::put("getblog", $blog, 60*60); 
+        //Aktif olab blogları cache kaydedip json formatında döndürüyor.
+        $blog = Blog::where("status", true)->orderByDesc("view_count")->get();
+        
+        Cache::put("getblog", $blog, 60*60); 
 
-            return response()->json([
-                "status" => "success",
-                "api" => Cache::get("getblog"),
-            ]);
-        } catch (\Throwable $th) {
-
-            return response()->json([
-                "status" =>"error",
-                "message" =>$th->getMessage(),
-            ]);
-            
-        }
+        return response()->json([
+            "status" => "success",
+            "api" => Cache::get("getblog"),
+        ]);
 
     }
 
@@ -54,7 +45,5 @@ class BlogRepository implements GeneralInterface
     //     return response()->json([
     //         "status" => "success",
     //     ]);
-    // }
-
-    
+    // } 
 }

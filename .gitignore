@@ -4,10 +4,6 @@
 /public/hot
 /public/storage
 /storage/*.key
-/supervisord.log
-/supervisord.pid
-supervisord.log
-supervisord.pid
 /vendor
 .env
 .env.backup
@@ -22,3 +18,5 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+supervisord.log
+supervisord.pid
