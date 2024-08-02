@@ -8,12 +8,14 @@ use App\Models\Policy;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
 
 class PrivacyResource extends Resource
 {
@@ -27,7 +29,7 @@ class PrivacyResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make("title"),
+                TextInput::make("title")->reactive()->live(debounce:'500')->afterStateUpdated(fn(Set $set, $state)=>$set("slug", Str::slug($state))),
                 TextInput::make("description"),
                 TextInput::make("slug"),
             ]);

@@ -26,10 +26,8 @@ Route::get('/blog/get/{slug}', [BlogController::class, "getBlogFirst"]);
 // Route::get('/category/view/{id}', [Blog::class, "retrieved"]);
 
 
+Route::get('/contract/{slug}', [Controller::class, "getContractFirst"]);
 
-Route::get('/kvkk/get', [Controller::class, "getKvkk"]); 
-
-Route::get('/privacy/get', [Controller::class, "getPrivacy"]);
 
 
 //Category Routes

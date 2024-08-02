@@ -2,31 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Repository\KvkkRepository;
-use App\Repository\PrivacyRepository;
+use App\Repository\ContractRepository;
 
 class Controller
 {
+    protected $contractRepository;
 
-    protected $kvkk, $privacy;
-
-    public function __construct(KvkkRepository $kvkkrepository, PrivacyRepository $privacyRepository){
-        $this->kvkk = $kvkkrepository;
-        $this->privacy = $privacyRepository;
+    public function __construct(ContractRepository $contractRepository){
+        $this->contractRepository = $contractRepository;
     }
 
-    //repoyu çagırıyor
-    public function getKvkk(){
+    public function getContractFirst($slug){
 
-        return $this->kvkk->getApiRepository();
+        return $this->contractRepository->getContractFirstRep($slug);
         
-    }
-
-    //repoyu çagırıyor
-    public function getPrivacy(){
-
-        return $this->privacy->getApiRepository();
-
     }
 
 
