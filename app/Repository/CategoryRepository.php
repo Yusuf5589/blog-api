@@ -2,6 +2,8 @@
 
 namespace App\Repository;
 
+use App\Http\Resources\BlogResource;
+use App\Http\Resources\CategoryResource;
 use App\Interface\GeneralInterface;
 use App\Models\Blog;
 use App\Models\Category;
@@ -17,7 +19,7 @@ class CategoryRepository implements GeneralInterface
 
         return response()->json([
             "status" => "success",
-            "api" => Cache::get("getcategory"),
+            "api" => CategoryResource::collection(Cache::get("getcategory")),
         ]);
     }
 
@@ -28,7 +30,7 @@ class CategoryRepository implements GeneralInterface
     
         return response()->json([
             "status" => "success",
-            "api" => $categoryApi,
+            "api" => BlogResource::collection($categoryApi),
         ]);
     }
     

@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Http\Resources\BlogResource;
 use App\Interface\GeneralInterface;
 use App\Models\Blog;
 use Illuminate\Support\Facades\Cache;
@@ -17,7 +18,7 @@ class BlogRepository implements GeneralInterface
 
         return response()->json([
             "status" => "success",
-            "api" => Cache::get("getblog"),
+            "api" => BlogResource::collection(Cache::get("getblog")),
         ]);
 
     }
