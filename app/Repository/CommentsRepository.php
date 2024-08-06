@@ -7,23 +7,23 @@ use App\Models\Comment;
 
 class CommentsRepository
 {
-    //Database yorum oluşturuyor ve mail yollama işlemini çalıştırıyor(JOB)
-    public function commentsSendRep(array $req){
+    //Database yorum olu ş turuyor ve mail yollama i ş lemini ç al ış t ı r ı yor(JOB)
+    public function commentSend(array $req){
         Comment::create([
             "comments" => $req["comments"],
             "comments_mail" => $req["comments_mail"],
-            "blogslug" => $req["blogslug"],
+            "blog_slug" => $req["blog_slug"],
             "status" => 0,
         ]);
         NewCommentSendMail::dispatch();
     }
 
 
-    //Blog idyi alıp idsi eeşlesen tüm yorumları json formatında döndürüyor
-    public function getCommentRep($blogslug){
+    //Blog idyi al ı p idsi ee ş lesen t ü m yorumlar ı json format ı nda d ö nd ü r ü yor
+    public function get($blogslug){
         
         
-        $comments = Comment::where("blogslug", $blogslug)->where("status", true)->get();
+        $comments = Comment::where("blog_slug", $blogslug)->where("status", true)->get();
 
         return response()->json([
             "status" => "success",

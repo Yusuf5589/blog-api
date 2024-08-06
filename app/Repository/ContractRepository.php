@@ -8,9 +8,9 @@ class ContractRepository
 {
 
 
-    public function getContractFirstRep($slug){
+    public function getFirst($slug){
 
-        $contract = Policy::where('slug', $slug)->get()->first();
+        $contract = Policy::where('slug', $slug)->first();
         
         return response()->json([
             "status" => "success",

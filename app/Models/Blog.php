@@ -11,7 +11,7 @@ class Blog extends Model
     use HasFactory;
     protected $appends = ['image_url'];
 
-    //Blog Model Veritabanı işlemlerimizi kolaylaştırıyor
+    //Blog Model Veritaban ı i ş lemlerimizi kolayla ş t ı r ı yor
     protected $table = 'blog'; 
     protected $fillable = [
         'title',
@@ -50,12 +50,16 @@ class Blog extends Model
 
     public function getImageUrlAttribute()
     {
-        return asset('storage/' . $this->img_url);
+        if($this->img_url == ""){
+            return asset('storage/img_url/blog-default.png');
+        }else{
+            return asset('storage/' . $this->img_url);
+        }
     }
     
 
 
-    //eğer yeni resim eklendiyse öncekini siliyor veya blog silindiyse strogedaki resmi siliyor
+    //e ğ er yeni resim eklendiyse ö ncekini siliyor veya blog silindiyse strogedaki resmi siliyor
     protected static function booted()
     {
         parent::boot();

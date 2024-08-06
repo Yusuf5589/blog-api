@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text("comments");
             $table->text("comments_mail");
-            $table->text("blogslug");
+            $table->text("blog_slug");
             $table->string('status');
             $table->timestamps();
         });

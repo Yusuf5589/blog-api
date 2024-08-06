@@ -9,9 +9,9 @@ class Comment extends Model
 {
     use HasFactory;
 
-    //Comment Model Veritabanı işlemlerimizi kolaylaştırıyor
+    //Comment Model Veritaban ı i ş lemlerimizi kolayla ş t ı r ı yor
 
     protected $table = "comment";
-    protected $fillable = ["comments", "comments_mail", "blogslug", "status", "created_at", "updated_at"];
+    protected $fillable = ["comments", "comments_mail", "blog_slug", "status", "created_at", "updated_at"];
 
 }

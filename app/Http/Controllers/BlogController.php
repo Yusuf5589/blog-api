@@ -12,27 +12,27 @@ class BlogController extends Controller
 
     protected $blogRepository;
 
-    //bura repositorydeki işlemleri çekmeye veya oraya veri yollamaya yarıyor
+    //bura repositorydeki i ş lemleri ç ekmeye veya oraya veri yollamaya yar ı yor
     public function __construct(BlogRepository $blogRepository){
         $this->blogRepository = $blogRepository;
     }
 
-    //tüm blogları bize repositoryden getiriyor
-    public function getBlog(){
+    //t ü m bloglar ı bize repositoryden getiriyor
+    public function get(){
 
-        return $this->blogRepository->getApiRepository();
+        return $this->blogRepository->getAll();
         
     }
 
 
-    //idsini girdiğimiz blog geliyor sadece
-    public function getBlogFirst($slug){
+    //idsini girdi ğ imiz blog geliyor sadece
+    public function getFirst($slug){
 
-        return $this->blogRepository->getBlogFirstRep($slug);
+        return $this->blogRepository->getFirst($slug);
         
     }
 
-    //repositorydeki tıklandığında görüntülanme sayısını arttırdığı functionu çağrıyor.
+    //repositorydeki t ı kland ığı nda g ö r ü nt ü lanme say ı s ı n ı artt ı rd ığı functionu ç a ğ r ı yor.
     // public function blogView($id){
     //     return $this->blogRepository->blogViewRep($id);
     // }

@@ -15,7 +15,7 @@ class ContractController extends Controller
 
     public function getFirst($slug){
 
-        return $this->contractRepository->getFirstRep($slug);
+        return $this->contractRepository->getFirst($slug);
         
     }
 }

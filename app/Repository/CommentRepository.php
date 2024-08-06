@@ -8,7 +8,7 @@ use App\Models\Comment;
 class CommentRepository
 {
     //Database yorum olu ş turuyor ve mail yollama i ş lemini ç al ış t ı r ı yor(JOB)
-    public function commentSendRep(array $req){
+    public function commentSend(array $req){
         Comment::create([
             "comments" => $req["comments"],
             "comments_mail" => $req["comments_mail"],
@@ -20,7 +20,7 @@ class CommentRepository
 
 
     //Blog idyi al ı p idsi ee ş lesen t ü m yorumlar ı json format ı nda d ö nd ü r ü yor
-    public function getRep($blogslug){
+    public function get($blogslug){
         
         
         $comments = Comment::where("blog_slug", $blogslug)->where("status", true)->get();

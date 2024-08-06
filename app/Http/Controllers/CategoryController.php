@@ -14,24 +14,24 @@ class CategoryController extends Controller
         $this->categoryRepository = $categoryRepository;
     }
 
-    //repoyu çagırıyor
-    public function getCategory(){
+    //repoyu ç ag ı r ı yor
+    public function get(){
         
-        return $this->categoryRepository->getApiRepository();
+        return $this->categoryRepository->getAll();
 
     }
 
-    //repoyu çagırıyor
-    public function getCategorySlug($category){
+    //repoyu ç ag ı r ı yor
+    public function getSlug($category){
 
-        return $this->categoryRepository->getCategorySlugRep($category);
+        return $this->categoryRepository->getSlug($category);
         
     }
 
-    //repoyu çagırıyor
-    public function getCategoryFirst($category){
+    //repoyu ç ag ı r ı yor
+    public function getFirst($category){
 
-        return $this->categoryRepository->getCategoryFirstRep($category);
+        return $this->categoryRepository->getFirst($category);
         
     }
 

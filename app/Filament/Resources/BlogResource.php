@@ -50,7 +50,7 @@ class BlogResource extends Resource
                 DatePicker::make("finish_date")->label("Finish Date")->after("beginning_date")->minDate(now()->addDay()),
                 TagsInput::make("tags")->required(),
                 Select::make('category_id')->label("Category")->options(Category::pluck("name","id"))->required(),
-                FileUpload::make("img_url")->disk("public")->directory("img_url")->default("img_url/blog-default.png"),
+                FileUpload::make("img_url")->disk("public")->directory("img_url")->nullable(),
                 Toggle::make('status')->onColor('success')->offColor('danger')->visible(fn()=>auth()->user()->hasRole("super_admin"))
             ]);
     }
@@ -72,7 +72,7 @@ class BlogResource extends Resource
                 TextColumn::make('finish_date'),
                 TextColumn::make('tags'),
                 TextColumn::make('category.name')->label('Category'),
-                ImageColumn::make('img_url'),
+                ImageColumn::make('img_url')->defaultImageUrl(url('storage/img_url/blog-default.png')),
                 IconColumn::make('status')->boolean(),
             ])
             ->filters([

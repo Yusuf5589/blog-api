@@ -23,7 +23,7 @@ class PrivacySeed extends Seeder
         Policy::create([
             "title" => "Privacy Policy Title",
             "description" => "Privacy Policy Description",
-            "slug" => "privacy_policy",
+            "slug" => "privacy-policy",
         ]);
     }
 }

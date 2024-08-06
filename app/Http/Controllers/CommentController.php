@@ -21,7 +21,7 @@ class CommentController extends Controller
             "blog_slug" => "required",
         ]);
                 
-            $this->comments->commentSendRep($req->all());
+            $this->comments->commentSend($req->all());
             return response()->json([
                 "status" =>"success",
                 "message" => "Comment created successfully",
@@ -31,7 +31,7 @@ class CommentController extends Controller
     //repoyu ç ag ı r ı yor
     public function get($blogslug){
 
-        return $this->comments->getRep($blogslug);
+        return $this->comments->get($blogslug);
 
     }
 
