@@ -26,8 +26,6 @@ class BlogResource extends JsonResource
                 'view_count' => $this->view_count,
                 'img_url' => $this->img_url,
                 'status' => $this->status,
-                'created_at' => $this->created_at,
-                'updated_at' => $this->updated_at,
                 'image_url' => $this->image_url,
         ];
     }

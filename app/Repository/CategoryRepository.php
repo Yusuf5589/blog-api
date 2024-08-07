@@ -41,7 +41,7 @@ class CategoryRepository implements GeneralInterface
     
         return response()->json([
             "status" => "success",
-            "api" => $categoryFirstApi,
+            "api" => new CategoryResource($categoryFirstApi),
         ]);
     }
 

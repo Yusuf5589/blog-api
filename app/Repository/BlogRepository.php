@@ -26,10 +26,10 @@ class BlogRepository implements GeneralInterface
 
     //idsini girdi ğ imiz blogu getiriyor
     public function getFirst($slug){
-
+        $blog = Blog::where("slug", $slug)->first();
         return response()->json([
             "status" => "success",
-            "api" => Blog::get()->where("slug", $slug)->first(),
+            "api" => new BlogResource($blog),
         ]);
     }
 
