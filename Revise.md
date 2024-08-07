@@ -28,11 +28,11 @@
 
 Yusuf
 
-1. view_count -> custom event ile 
+# 1. view_count -> custom event ile 
 # 2. CommentsRepository, CategoryRepository isimlendirme tekil ç o ğ ul?
 # 3. getApiRepository isimlendirme?
 # 4. $table->string('img_url')->default('img_url/blog-default.png'); yanl ış .
-5. Resources t ü m s ü tunlar ı koymak zorunda d ğ eilsin ihtiyac ı n olanlar. CategoryResource & CategoryDetailResource
+# 5. Resources t ü m s ü tunlar ı koymak zorunda d ğ eilsin ihtiyac ı n olanlar. CategoryResource & CategoryDetailResource
 # 6. Policy::where('slug', $slug)->get()->first(); -> get() gerek yok.
 # 7. Controller'daki fonksiyonlar?
 # 8. contract_repositories nedir?

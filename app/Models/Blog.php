@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\Blog as EventsBlog;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -78,10 +79,14 @@ class Blog extends Model
             }
         });
 
-
         static::retrieved(function ($blog) {
-            $blog->increment('view_count');
+            event(new EventsBlog($blog));
         });
+
+
+        // static::retrieved(function ($blog) {
+        //     $blog->increment('view_count');
+        // });
         
     }
 

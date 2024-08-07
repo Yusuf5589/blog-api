@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Http\Resources\BlogResource;
+use App\Http\Resources\CategoryDetailResource;
 use App\Http\Resources\CategoryResource;
 use App\Interface\GeneralInterface;
 use App\Models\Blog;
@@ -38,10 +39,10 @@ class CategoryRepository implements GeneralInterface
     public function getFirst($category){
         $categoryFirstApi = Category::where("id", $category)->first();
 
-    
+    //Frontda Sadece Name ihtiyac ı m ı z oldu ğ u i ç in CategoryDetailResource ile sadece name'i getiriyorum.
         return response()->json([
             "status" => "success",
-            "api" => new CategoryResource($categoryFirstApi),
+            "api" => new CategoryDetailResource($categoryFirstApi),
         ]);
     }
 

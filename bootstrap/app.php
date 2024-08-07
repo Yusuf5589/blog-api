@@ -21,7 +21,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         HandleExceptionsMiddleware::class;
     })->withSchedule(function (Schedule $schedule) {
-        //Schedule ile her gece 12'de tarihi gelen blogları aktif ediyor.Eğer tarihi geçtiyse pasif yapıyor.
+        //Schedule ile her gece 12'de tarihi gelen bloglar ı aktif ediyor.E ğ er tarihi ge ç tiyse pasif yap ı yor.
         // $schedule->call(function(){
         //     $date = Carbon::now()->toDateString();
         //     Blog::where('beginning_date',"<=", $date)->update([
@@ -37,4 +37,7 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions) {
 
-    })->create();
+    })
+    ->withEvents(discover: [
+        app_path('Domain/Listeners')
+    ])->create();
