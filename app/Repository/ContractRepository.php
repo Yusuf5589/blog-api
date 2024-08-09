@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Http\Resources\ContractResource;
 use App\Models\Policy;
 
 class ContractRepository
@@ -12,10 +13,7 @@ class ContractRepository
 
         $contract = Policy::where('slug', $slug)->first();
         
-        return response()->json([
-            "status" => "success",
-            "api" => $contract
-        ]);
+        return new ContractResource($contract);
 
     }
     

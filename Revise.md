@@ -26,7 +26,6 @@
 
 
 
-Yusuf
 
 # 1. view_count -> custom event ile 
 # 2. CommentsRepository, CategoryRepository isimlendirme tekil ç o ğ ul?
@@ -38,3 +37,15 @@ Yusuf
 # 8. contract_repositories nedir?
 # 9. s ü tun isimlendirmesi? -> blogslug
 # 10. BlogController i ç indesin zaten getBlogFirst gereksiz.
+
+
+
+
+
+# 1. commentSend request validation?
+# 2. event(new  EventsBlog($blog)); service'e konmal ı .
+# 3. Controller'daki i ş lemlerini Service katman ı na ta şı mak.
+# 4. ImageColumn::make('img_url')->defaultImageUrl(url('storage/img_url/blog-default.png'))
+# 5. ->default('null') de ğ il null olmal ı .
+# 6. errorResponse ve successResponse bi Responser Trait'i olu ş tur.
+# 7. data tipleri null empty fark ı vs?

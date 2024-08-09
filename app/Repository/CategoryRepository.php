@@ -17,33 +17,26 @@ class CategoryRepository implements GeneralInterface
     public function getAll(){
         $category = Category::all();
         Cache::put("getcategory", $category, 60*60); 
+        $categoryGet = CategoryResource::collection(Cache::get("getcategory"));
 
-        return response()->json([
-            "status" => "success",
-            "api" => CategoryResource::collection(Cache::get("getcategory")),
-        ]);
+        return $categoryGet;
     }
 
     //category_idsi tutan t ü m bloglar ı veritaban ı ndan ç ag ı r ı p json format ı nda d ö n ü yor
-    public function getSlug($category){
-        $categoryApi = Blog::where("category_id", $category)->get();
+    public function getSlug($categorySlug){
+        $categoryGet = Blog::where("category_id", $categorySlug)->get();
 
-    
-        return response()->json([
-            "status" => "success",
-            "api" => BlogResource::collection($categoryApi),
-        ]);
+        $categoryData = BlogResource::collection($categoryGet);
+        return $categoryData;
     }
     
     //idsi tutan categoryi databaseden ç a ğı r ı p json format ı nda d ö n ü yor.
-    public function getFirst($category){
-        $categoryFirstApi = Category::where("id", $category)->first();
+    public function getFirst($categoryId){
+        $categoryFirstApi = Category::where("id", $categoryId)->first();
 
     //Frontda Sadece Name ihtiyac ı m ı z oldu ğ u i ç in CategoryDetailResource ile sadece name'i getiriyorum.
-        return response()->json([
-            "status" => "success",
-            "api" => new CategoryDetailResource($categoryFirstApi),
-        ]);
+        return new CategoryDetailResource($categoryFirstApi);
+
     }
 
 }

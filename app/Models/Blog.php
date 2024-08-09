@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Events\Blog as EventsBlog;
+use Hamcrest\Core\IsNull;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -51,7 +51,7 @@ class Blog extends Model
 
     public function getImageUrlAttribute()
     {
-        if($this->img_url == ""){
+        if(is_null($this->img_url)){
             return asset('storage/img_url/blog-default.png');
         }else{
             return asset('storage/' . $this->img_url);
@@ -79,9 +79,9 @@ class Blog extends Model
             }
         });
 
-        static::retrieved(function ($blog) {
-            event(new EventsBlog($blog));
-        });
+        // static::retrieved(function ($blog) {
+        //     event(new EventsBlog($blog));
+        // });
 
 
         // static::retrieved(function ($blog) {

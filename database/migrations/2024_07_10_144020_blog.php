@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('category_id');
             $table->json('tags');
             $table->integer('view_count')->default(0);
-            $table->string('img_url')->nullable()->default('null');
+            $table->string('img_url')->nullable()->default(null);
             $table->string('status');
             $table->timestamps();
         });

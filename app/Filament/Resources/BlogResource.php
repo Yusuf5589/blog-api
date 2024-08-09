@@ -61,6 +61,7 @@ class BlogResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('title'),
+                TextColumn::make('slug'),
                 TextColumn::make('description')
                 ->extraAttributes([
                     'style' => '

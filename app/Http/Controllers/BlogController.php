@@ -2,33 +2,32 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Repository\BlogRepository;
+use App\Events\Blog;
+use App\Service\BlogService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
 class BlogController extends Controller
 {
 
-    protected $blogRepository;
+    protected $blogService;
 
     //bura repositorydeki i ş lemleri ç ekmeye veya oraya veri yollamaya yar ı yor
-    public function __construct(BlogRepository $blogRepository){
-        $this->blogRepository = $blogRepository;
+    public function __construct(BlogService $blogService){
+        $this->blogService = $blogService;
     }
 
     //t ü m bloglar ı bize repositoryden getiriyor
     public function get(){
 
-        return $this->blogRepository->getAll();
+        return $this->blogService->getAll();
         
     }
 
 
     //idsini girdi ğ imiz blog geliyor sadece
     public function getFirst($slug){
-
-        return $this->blogRepository->getFirst($slug);
+        return $this->blogService->getFirst($slug);
         
     }
 

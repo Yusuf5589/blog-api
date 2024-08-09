@@ -7,13 +7,13 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
-    //Hataları Loglar
+    //Hatalar ı Loglar
     public function report(Throwable $exception)
     {
         parent::report($exception);
     }
     
-    //Hataları Http yanıtı olark döndürür
+    //Hatalar ı Http yan ı t ı olark d ö nd ü r ü r
     public function render($request, Throwable $exception)
     {
         if ($exception instanceof CustomException) {

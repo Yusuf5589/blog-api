@@ -2,26 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Repository\CommentRepository;
+use App\Http\Requests\CommentRequest;
+use App\Service\CommentService;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    protected $comments;
+    protected $commentService;
 
-    public function __construct(CommentRepository $comments){
-        $this->comments = $comments;
+    public function __construct(CommentService $commentService){
+        $this->commentService = $commentService;
     }
 
     //e ğ er ki girdi ğ i verilerde validate hatas ı yoksa repoyu ç ag ı r ı yor.
-    public function commentSend(Request $req){
-        $req->validate([
-            "comments" => "required",
-            "comments_mail" => "required|email",
-            "blog_slug" => "required",
-        ]);
+    public function commentSend(CommentRequest $req){
+        // $req->validate([
+        //     "commentService" => "required",
+        //     "commentService_mail" => "required|email",
+        //     "blog_slug" => "required",
+        // ]);
                 
-            $this->comments->commentSend($req->all());
+            $this->commentService->commentSend($req->all());
             return response()->json([
                 "status" =>"success",
                 "message" => "Comment created successfully",
@@ -31,7 +32,7 @@ class CommentController extends Controller
     //repoyu ç ag ı r ı yor
     public function get($blogslug){
 
-        return $this->comments->get($blogslug);
+        return $this->commentService->get($blogslug);
 
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Events\Blog as EventsBlog;
 use App\Http\Resources\BlogResource;
 use App\Interface\GeneralInterface;
 use App\Models\Blog;
@@ -15,22 +16,18 @@ class BlogRepository implements GeneralInterface
         $blog = Blog::where("status", true)->orderByDesc("view_count")->get();
         
         Cache::put("getblog", $blog, 60*60); 
-
-        return response()->json([
-            "status" => "success",
-            "api" => BlogResource::collection(Cache::get("getblog")),
-        ]);
-
+        $blogAll = BlogResource::collection(Cache::get("getblog"));
+        return $blogAll;
     }
 
 
     //idsini girdi ğ imiz blogu getiriyor
     public function getFirst($slug){
         $blog = Blog::where("slug", $slug)->first();
-        return response()->json([
-            "status" => "success",
-            "api" => new BlogResource($blog),
-        ]);
+
+        event(new EventsBlog($blog));
+        $blogfirst = new BlogResource($blog);
+        return new BlogResource($blogfirst);
     }
 
     //t ı kland ığı nda g ö r ü nt ü lanme say ı s ı n ı artt ı r ı yor.
