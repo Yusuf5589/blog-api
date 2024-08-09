@@ -2,11 +2,15 @@
 
 namespace App\Exceptions;
 
+use App\Http\Traits\ResponserTrait;
 use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
+
+    use ResponserTrait;
+
     //Hatalar ı Loglar
     public function report(Throwable $exception)
     {
@@ -17,7 +21,7 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         if ($exception instanceof CustomException) {
-            return response()->json(['error' => $exception->getMessage()], 400);
+            return $this->errorResponse($exception->getMessage());
         }
     
         return parent::render($request, $exception);

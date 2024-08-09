@@ -11,7 +11,7 @@ trait ResponserTrait
         return response()->json([
             'status'    => "success",
             'message'    => $message,
-            'data'       => $data,
+            'api'       => $data,
         ], $httpResponseCode);
     }
 
