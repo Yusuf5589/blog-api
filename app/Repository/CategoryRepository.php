@@ -24,7 +24,9 @@ class CategoryRepository implements GeneralInterface
 
     //category_idsi tutan t ü m bloglar ı veritaban ı ndan ç ag ı r ı p json format ı nda d ö n ü yor
     public function getSlug($categorySlug){
-        $categoryGet = Blog::where("category_id", $categorySlug)->get();
+        $categoryId = Category::where('slug', $categorySlug)->first();
+
+        $categoryGet = Blog::where("category_id", $categoryId->id)->get();
 
         $categoryData = BlogResource::collection($categoryGet);
         return $categoryData;

@@ -73,7 +73,7 @@ class BlogResource extends Resource
                 TextColumn::make('finish_date'),
                 TextColumn::make('tags'),
                 TextColumn::make('category.name')->label('Category'),
-                ImageColumn::make('img_url')->defaultImageUrl(url('storage/img_url/blog-default.png')),
+                ImageColumn::make('img_url')->defaultImageUrl(url('storage/img_url/'.env('APP_IMAGE_NAME'))),
                 IconColumn::make('status')->boolean(),
             ])
             ->filters([

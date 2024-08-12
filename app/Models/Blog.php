@@ -52,7 +52,7 @@ class Blog extends Model
     public function getImageUrlAttribute()
     {
         if(is_null($this->img_url)){
-            return asset('storage/img_url/blog-default.png');
+            return asset('storage/img_url/'.env('APP_IMAGE_NAME'));
         }else{
             return asset('storage/' . $this->img_url);
         }
